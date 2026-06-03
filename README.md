@@ -1,9 +1,31 @@
-# SGJSS_NGO_Website
+# Youth for Children (YFC) Website
 
-_**Created By [Omkar Jadhav](https://github.com/Omkaroj1242), [Sheenam Goel](https://github.com/SheenamGoel),  and [Mahesh Babar](https://github.com/maheshdbabar9340)**_
+**A community‑based NGO website advancing child protection, youth leadership, and inclusive education in Kenya.**
 
-_**Take a view at => https://sgjss.netlify.app/ OR [SGJSS_NGO_Website](https://maheshdbabar9340.github.io/SGJSS_NGO_Website/)**_
+🌐 **Live site:** _[add your deployed URL here]_
 
-**smtp.js for sending E-mails ==> https://kaustubh72.medium.com/send-e-mails-with-smtp-js-a8e07e1d0b6b**
-"# yfc" 
-"# yfc-website" 
+---
+
+## 📌 Project Overview
+
+The **Youth for Children** website is a responsive, mobile‑friendly platform that showcases the organization’s mission, programs, and impact.  
+It includes:
+
+- 🏠 **Home page** with hero slideshow, stats, and program cards
+- 📄 **About Us** – mission, vision, values, and founding story
+- 📚 **Programs** – child protection, youth leadership, climate action, and more
+- 🤝 **Get Involved** – volunteer opportunities and team members
+- 🖼️ **Photo Gallery** with search/filter and lightbox
+- 📧 **Contact Us** – interactive form that sends emails via **SMTP.js**
+- 🔒 **Privacy Policy** page
+
+All pages follow a consistent design system (Inter + Outfit fonts, deep‑blue primary, amber accents) and are fully responsive.
+
+---
+
+## 🚀 How to Deploy
+
+### 1. Clone or download the repository
+```bash
+git clone https://github.com/your-username/yfc-website.git
+cd yfc-website
