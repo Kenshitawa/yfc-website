@@ -859,16 +859,7 @@
                     child safety, inclusive education, and environmental consciousness through
                     youth‑led programs across Kenya.
                 </p>
-                <div class="hero-cta">
-                    <a href="projects.html" class="btn primary">
-                        <span>Explore Our Programs</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                    <a href="volunteers.html" class="btn secondary">
-                        <span>Get Involved</span>
-                        <i class="fas fa-hands-helping"></i>
-                    </a>
-                </div>
+
             </div>
         </div>
     </section>
@@ -896,54 +887,7 @@
             </div>
         </div>
     </section>
-
-    <!-- FOCUS AREAS / PROGRAMS -->
-    <section class="section">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-kicker">Our Work</div>
-                <h2 class="section-title">Core Programs</h2>
-                <p class="section-desc">
-                    Youth‑led initiatives that build upon children's capacity to respond to the
-                    contemporary world through digital storytelling, safeguarding, and community action.
-                </p>
-            </div>
-
-            <div class="focus-grid">
-                <div class="focus-card reveal">
-                    <div class="focus-icon"><i class="fas fa-shield-alt"></i></div>
-                    <h3>Child Protection & Safeguarding</h3>
-                    <p>Creating safe environments where children learn and thrive free from abuse, neglect, and violence through awareness, workshops, and community engagement.</p>
-                </div>
-                <div class="focus-card reveal">
-                    <div class="focus-icon"><i class="fas fa-users"></i></div>
-                    <h3>Empowering the Future</h3>
-                    <p>Flagship youth leadership program strengthening young voices through mentorship, public speaking, storytelling, and hands‑on community engagement.</p>
-                </div>
-                <div class="focus-card reveal">
-                    <div class="focus-icon"><i class="fas fa-leaf"></i></div>
-                    <h3>Climate Action (Eco‑Heroes)</h3>
-                    <p>Equipping children with knowledge and skills for environmental stewardship through storytelling, tree‑growing, waste management, and conservation activities.</p>
-                </div>
-                <div class="focus-card reveal">
-                    <div class="focus-icon"><i class="fas fa-pen"></i></div>
-                    <h3>One Learner, One Pen</h3>
-                    <p>Resource mobilization initiative providing pens, pencils, books, and school supplies to children from underserved and informal settlement communities.</p>
-                </div>
-                <div class="focus-card reveal">
-                    <div class="focus-icon"><i class="fas fa-graduation-cap"></i></div>
-                    <h3>Inclusive Education</h3>
-                    <p>Creating learning environments where every child feels safe, valued, and empowered to reach their full potential through rights‑based approaches.</p>
-                </div>
-                <div class="focus-card reveal">
-                    <div class="focus-icon"><i class="fas fa-hand-holding-heart"></i></div>
-                    <h3>Children Rights Clubs</h3>
-                    <p>Establishing platforms in schools across Kenya where children can voice their concerns and advocate for their rights among peers and communities.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    
     <!-- ABOUT -->
     <section class="section soft">
         <div class="container">
@@ -997,6 +941,54 @@
             </div>
         </div>
     </section>
+
+    <!-- FOCUS AREAS / PROGRAMS -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-kicker">Our Work</div>
+                <h2 class="section-title">Core Programs</h2>
+                <p class="section-desc">
+                    Youth‑led initiatives that build upon children's capacity to respond to the
+                    contemporary world through digital storytelling, safeguarding, and community action.
+                </p>
+            </div>
+
+            <div class="focus-grid">
+                <div class="focus-card reveal">
+                    <div class="focus-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Child Protection & Safeguarding</h3>
+                    <p>Creating safe environments where children learn and thrive free from abuse, neglect, and violence through awareness, workshops, and community engagement.</p>
+                </div>
+                <div class="focus-card reveal">
+                    <div class="focus-icon"><i class="fas fa-users"></i></div>
+                    <h3>Empowering the Future</h3>
+                    <p>Flagship youth leadership program strengthening young voices through mentorship, public speaking, storytelling, and hands‑on community engagement.</p>
+                </div>
+                <div class="focus-card reveal">
+                    <div class="focus-icon"><i class="fas fa-leaf"></i></div>
+                    <h3>Climate Action (Eco‑Heroes)</h3>
+                    <p>Equipping children with knowledge and skills for environmental stewardship through storytelling, tree‑growing, waste management, and conservation activities.</p>
+                </div>
+                <div class="focus-card reveal">
+                    <div class="focus-icon"><i class="fas fa-pen"></i></div>
+                    <h3>One Learner, One Pen</h3>
+                    <p>Resource mobilization initiative providing pens, pencils, books, and school supplies to children from underserved and informal settlement communities.</p>
+                </div>
+                <div class="focus-card reveal">
+                    <div class="focus-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>Inclusive Education</h3>
+                    <p>Creating learning environments where every child feels safe, valued, and empowered to reach their full potential through rights‑based approaches.</p>
+                </div>
+                <div class="focus-card reveal">
+                    <div class="focus-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    <h3>Children Rights Clubs</h3>
+                    <p>Establishing platforms in schools across Kenya where children can voice their concerns and advocate for their rights among peers and communities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <!-- KEY ACHIEVEMENTS -->
     <section class="section soft">
@@ -1157,11 +1149,11 @@
             const timer = setInterval(() => {
                 current += step;
                 if (current >= target) {
-                    element.textContent = target >= 1000 ? target.toLocaleString() + '+' : target;
+                    element.textContent = target;
                     clearInterval(timer);
                 } else {
                     const value = Math.floor(current);
-                    element.textContent = value >= 1000 ? value.toLocaleString() : value;
+                    element.textContent = value;
                 }
             }, 16);
         }
