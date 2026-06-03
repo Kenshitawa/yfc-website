@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
     <style>
+        /* ---- All your original CSS stays exactly the same ---- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
 
@@ -824,46 +825,62 @@
                     </div>
                 </div>
 
-                <!-- Contact Form -->
+                <!-- Contact Form (UPDATED – automatic email sending) -->
                 <div class="contact-card">
                     <h2>Send Us a Message</h2>
-                    <p>Fill in the form and we'll get back to you shortly about how you can support or partner with Youth for Children.</p>
+                    <p>Fill in the form and we'll get back to you shortly. Your message goes directly to our inbox.</p>
 
                     <div id="alertMessage" class="alert"></div>
 
-                    <form id="contactForm" class="contact-form" novalidate>
+                    <!--
+                         ACTION: FormSubmit endpoint for your email.
+                         Replace the email if needed.
+                         _captcha=false disables their captcha (you can remove it later).
+                         _honeypot helps block spam bots.
+                    -->
+                    <form id="contactForm" class="contact-form"
+                          action="https://formsubmit.co/youforchildren@gmail.com"
+                          method="POST"
+                          novalidate>
+
+                        <!-- Hidden anti-spam & config fields -->
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="text" name="_honeypot" style="display:none">
+                        <!-- Optional: redirect after success (we'll handle with JS) -->
+                        <input type="hidden" name="_next" value="false">
+
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="firstName">First Name <span>*</span></label>
-                                <input type="text" id="firstName" placeholder="e.g. Amina" required />
+                                <input type="text" id="firstName" name="firstName" placeholder="e.g. Amina" required />
                             </div>
 
                             <div class="form-group">
                                 <label for="lastName">Last Name <span>*</span></label>
-                                <input type="text" id="lastName" placeholder="e.g. Otieno" required />
+                                <input type="text" id="lastName" name="lastName" placeholder="e.g. Otieno" required />
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="email">Email <span>*</span></label>
-                                <input type="email" id="email" placeholder="name@example.com" required />
+                                <input type="email" id="email" name="email" placeholder="name@example.com" required />
                             </div>
 
                             <div class="form-group">
                                 <label for="phone">Phone (optional)</label>
-                                <input type="tel" id="phone" placeholder="+254..." />
+                                <input type="tel" id="phone" name="phone" placeholder="+254..." />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="subject">Subject <span>*</span></label>
-                            <input type="text" id="subject" placeholder="Partnership / Volunteer / Child Protection..." required />
+                            <input type="text" id="subject" name="subject" placeholder="Partnership / Volunteer / Child Protection..." required />
                         </div>
 
                         <div class="form-group">
                             <label for="message">Message <span>*</span></label>
-                            <textarea id="message" placeholder="Tell us how you'd like to get involved or support our work..." required></textarea>
+                            <textarea id="message" name="message" placeholder="Tell us how you'd like to get involved or support our work..." required></textarea>
                             <div class="form-hint">Include your organization name or the program you're interested in.</div>
                         </div>
 
@@ -1001,16 +1018,17 @@
 
             setTimeout(() => {
                 alertDiv.classList.remove('show');
-            }, 5000);
+            }, 6000);
         }
 
         function isValidEmail(val) {
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
         }
 
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();  // Stop normal submission – we'll send via AJAX
 
+            // --- Client-side validation (unchanged) ---
             const firstName = document.getElementById('firstName').value.trim();
             const lastName = document.getElementById('lastName').value.trim();
             const email = document.getElementById('email').value.trim();
@@ -1028,21 +1046,34 @@
                 return;
             }
 
-            const fullName = `${firstName} ${lastName}`;
-            const to = 'youforchildren@gmail.com';
-            const body = `Name: ${fullName}\nEmail: ${email}\nPhone: ${phone || '-'}\nSubject: ${subject}\n\nMessage:\n${message}`;
-
+            // --- Disable button & show loading state ---
             submitBtn.disabled = true;
-            submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Preparing...`;
+            submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Sending...`;
 
-            window.location.href = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent('Website Contact: ' + subject)}&body=${encodeURIComponent(body)}`;
+            try {
+                // Use FormData to send all fields (including hidden ones)
+                const formData = new FormData(form);
 
-            setTimeout(() => {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    showAlert('success', 'Message sent successfully! We’ll get back to you soon.');
+                    form.reset();
+                } else {
+                    // Some error from FormSubmit
+                    throw new Error('Server responded with an error');
+                }
+            } catch (error) {
+                showAlert('error', 'Something went wrong. Please try again or email us directly.');
+                console.error('Form submission error:', error);
+            } finally {
+                // Re-enable button
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = `<span>Send Message</span><i class="fas fa-paper-plane"></i>`;
-                showAlert('success', 'Your email app has been opened. Press Send to deliver your message.');
-                form.reset();
-            }, 800);
+            }
         });
     </script>
 </body>
