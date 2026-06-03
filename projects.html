@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Our Programs – Youth for Children | Empowering Youth, Protecting Children</title>
+    <meta name="description" content="Explore Youth for Children programs in child protection, youth leadership, climate action, and inclusive education across Kenya." />
+    <link rel="icon" href="images/logo.png" />
+
+    <!-- Fonts (matching WeCare: Inter + Outfit) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #3b82f6;
+            --primary-dark: #1e40af;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --text: #1e293b;
+            --text-light: #334155;
+            --text-muted: #475569;
+            --bg: #ffffff;
+            --bg-soft: #f8fafc;
+            --bg-light: #f1f5f9;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-lg: 24px;
+            --transition: all 0.2s ease;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.5;
+            font-size: 1rem;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { width: min(1280px, calc(100% - 2rem)); margin: 0 auto; }
+
+        /* Top bar */
+        .top-bar { background: var(--primary-dark); color: white; font-size: 0.85rem; padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .top-bar-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+        .top-bar-links { display: flex; gap: 1.5rem; list-style: none; }
+        .top-bar-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-weight: 500; font-size: 0.85rem; transition: var(--transition); }
+        .top-bar-links a:hover { color: white; }
+        .top-bar-actions { display: flex; gap: 1rem; }
+        .top-btn { padding: 0.4rem 1rem; border-radius: 40px; text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: var(--transition); display: inline-flex; align-items: center; gap: 0.5rem; }
+        .top-btn.contact { background: var(--accent); color: white; }
+        .top-btn.contact:hover { background: #d35400; transform: translateY(-1px); }
+        .top-btn.donate { background: white; color: var(--primary); }
+        .top-btn.donate:hover { background: #f1f5f9; }
+
+        /* Navbar */
+        .navbar { position: sticky; top: 0; z-index: 1000; background: rgba(255,255,255,0.98); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); transition: var(--transition); }
+        .navbar.scrolled { box-shadow: var(--shadow-sm); }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 0.9rem 0; gap: 1.5rem; }
+        .brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+        .brand img { height: 48px; width: auto; object-fit: contain; border-radius: 10px; }
+        .brand-text p { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); letter-spacing: 0.5px; }
+        .nav-menu { list-style: none; display: flex; align-items: center; gap: 0.25rem; }
+        .nav-menu a { text-decoration: none; color: var(--text-light); font-weight: 600; font-size: 0.95rem; padding: 0.6rem 1.1rem; border-radius: 40px; transition: var(--transition); }
+        .nav-menu a:hover, .nav-menu a.active { background: var(--bg-light); color: var(--primary); }
+        .mobile-toggle { display: none; background: none; border: 1px solid var(--border); padding: 0.6rem; border-radius: 10px; cursor: pointer; background: white; }
+
+        /* Page Hero */
+        .page-hero { padding: 4rem 0 3rem; position: relative; overflow: hidden; min-height: 340px; }
+        .page-hero-slideshow { position: absolute; inset: 0; z-index: 0; }
+        .page-hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.5s ease; background-size: cover; background-position: center; }
+        .page-hero-slide.active { opacity: 1; }
+        .page-hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(30, 58, 138, 0.82) 0%, rgba(30, 64, 175, 0.78) 50%, rgba(59, 130, 246, 0.72) 100%); z-index: 1; }
+        .page-hero-content { position: relative; z-index: 2; text-align: center; max-width: 800px; margin: 0 auto; }
+        .page-hero h1 { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: clamp(1.8rem, 5vw, 2.5rem); color: white; margin-bottom: 1rem; text-shadow: 0 2px 12px rgba(0,0,0,0.2); }
+        .page-hero p { font-size: 1rem; color: rgba(255,255,255,0.92); line-height: 1.6; max-width: 650px; margin: 0 auto 1rem; }
+        .breadcrumb { display: flex; justify-content: center; gap: 0.6rem; align-items: center; color: rgba(255,255,255,0.8); font-size: 0.85rem; }
+        .breadcrumb a { color: rgba(255,255,255,0.8); text-decoration: none; transition: var(--transition); }
+        .breadcrumb a:hover { color: white; }
+
+        /* Sections */
+        .section { padding: 3rem 0; }
+        .section.soft { background: var(--bg-soft); }
+        .section-header { text-align: center; max-width: 750px; margin: 0 auto 2rem; }
+        .section-header h2 { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: clamp(1.6rem, 4vw, 2rem); margin-bottom: 0.8rem; }
+        .section-header p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+        /* Filters */
+        .filters { display: flex; gap: 0.7rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem; }
+        .filter-chip { padding: 0.6rem 1.3rem; border-radius: 999px; border: 1px solid var(--border); background: white; color: var(--text-light); font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: var(--transition); }
+        .filter-chip:hover { border-color: var(--primary-light); color: var(--primary); transform: translateY(-1px); }
+        .filter-chip.active { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border-color: transparent; box-shadow: 0 2px 8px rgba(30, 58, 138, 0.2); }
+
+        /* Program Grid */
+        .program-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; }
+        .program-card { background: white; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); transition: var(--transition); opacity: 0; transform: translateY(20px); }
+        .program-card.show { opacity: 1; transform: translateY(0); }
+        .program-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: rgba(30, 58, 138, 0.15); }
+        .program-image { position: relative; height: 200px; overflow: hidden; background: linear-gradient(135deg, var(--primary), var(--primary-light)); }
+        .program-image img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+        .program-card:hover .program-image img { transform: scale(1.03); }
+        .program-tag { position: absolute; top: 0.8rem; left: 0.8rem; padding: 0.3rem 0.8rem; border-radius: 999px; background: rgba(255,255,255,0.95); font-weight: 700; font-size: 0.7rem; color: var(--primary); }
+        .program-content { padding: 1.5rem; }
+        .program-icon { width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); display: grid; place-items: center; color: white; font-size: 1.1rem; margin-bottom: 1rem; }
+        .program-content h3 { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.1rem; margin-bottom: 0.6rem; }
+        .program-content p { color: var(--text-muted); line-height: 1.6; font-size: 0.9rem; margin-bottom: 1rem; }
+        .program-meta { display: flex; gap: 0.6rem; flex-wrap: wrap; padding-top: 0.8rem; border-top: 1px solid var(--border); margin-bottom: 1rem; }
+        .meta-item { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.3rem 0.7rem; border-radius: 999px; background: var(--bg-soft); border: 1px solid var(--border); font-size: 0.75rem; font-weight: 600; color: var(--text-light); }
+        .meta-item i { color: var(--primary); font-size: 0.7rem; }
+        .program-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: var(--transition); }
+        .program-link:hover { gap: 0.6rem; color: var(--primary-dark); }
+
+        /* Impact Section */
+        .impact-section { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); padding: 3rem 0; }
+        .impact-section .section-header h2 { color: white; }
+        .impact-section .section-header p { color: rgba(255,255,255,0.85); }
+        .impact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 1.5rem; }
+        .impact-stat { text-align: center; padding: 1.2rem; border-radius: var(--radius); background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); transition: var(--transition); }
+        .impact-stat:hover { background: rgba(255,255,255,0.2); transform: translateY(-3px); }
+        .impact-stat-number { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.8rem; color: white; margin-bottom: 0.3rem; }
+        .impact-stat-label { color: rgba(255,255,255,0.9); font-weight: 600; font-size: 0.85rem; }
+
+        /* CTA Section */
+        .cta-section { padding: 3rem 0; background: white; }
+        .cta-box { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); border-radius: var(--radius-lg); padding: 2.5rem; text-align: center; }
+        .cta-box h2 { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.4rem; color: white; margin-bottom: 0.8rem; }
+        .cta-box p { color: rgba(255,255,255,0.85); font-size: 0.9rem; margin-bottom: 1.2rem; }
+        .btn { border: none; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; border-radius: 60px; padding: 0.6rem 1.2rem; font-weight: 600; font-size: 0.85rem; transition: var(--transition); }
+        .btn.primary { background: white; color: var(--primary); }
+        .btn.ghost { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.35); color: white; }
+        .btn.primary:hover, .btn.ghost:hover { transform: translateY(-2px); }
+
+        /* Footer */
+        .footer { background: #0a1628; color: white; padding: 3rem 0 1.5rem; margin-top: 2rem; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .footer-brand { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; }
+        .footer-brand img { height: 52px; background: white; padding: 8px; border-radius: 12px; }
+        .footer-brand-text h4 { font-family: 'Outfit', sans-serif; font-size: 1rem; margin-bottom: 0.2rem; }
+        .footer-brand-text p { font-size: 0.7rem; color: rgba(255,255,255,0.7); }
+        .footer h5 { font-size: 0.9rem; font-weight: 700; margin-bottom: 1rem; }
+        .footer ul li { margin-bottom: 0.5rem; list-style: none; }
+        .footer a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: var(--transition); display: inline-flex; align-items: center; gap: 0.4rem; }
+        .footer a:hover { color: white; transform: translateX(3px); }
+        .footer-contact li { display: flex; align-items: start; gap: 0.6rem; color: rgba(255,255,255,0.75); margin-bottom: 0.7rem; font-size: 0.85rem; }
+        .footer-contact i { color: var(--primary-light); margin-top: 0.15rem; }
+        .social-links { display: flex; gap: 0.8rem; margin-top: 1rem; }
+        .social-links a { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.08); display: grid; place-items: center; color: white; transition: var(--transition); }
+        .social-links a:hover { background: var(--primary-light); transform: translateY(-2px); }
+        .footer-bottom { text-align: center; padding-top: 1rem; font-size: 0.75rem; border-top: 1px solid rgba(255,255,255,0.08); }
+
+        /* WhatsApp FAB */
+        .wa-fab { position: fixed; right: 1.5rem; bottom: 1.5rem; width: 52px; height: 52px; border-radius: 50%; background: #25D366; color: white; display: grid; place-items: center; font-size: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.25); z-index: 999; transition: var(--transition); text-decoration: none; }
+        .wa-fab:hover { transform: scale(1.05); }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .top-bar { display: none; }
+            .mobile-toggle { display: flex; }
+            .nav-menu { position: fixed; top: 72px; left: 0; right: 0; background: white; flex-direction: column; gap: 0.5rem; padding: 1rem; transform: translateY(-150%); transition: 0.25s ease; box-shadow: var(--shadow-lg); border-bottom: 1px solid var(--border); z-index: 999; }
+            .nav-menu.active { transform: translateY(0); }
+            .nav-menu a { width: 100%; text-align: center; }
+            .impact-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+        }
+        @media (max-width: 640px) {
+            .impact-grid { grid-template-columns: 1fr; }
+            .program-grid { grid-template-columns: 1fr; }
+            .cta-buttons { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+        }
+        .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-inner">
+                <ul class="top-bar-links">
+                    <li><a href="contactus.html">Contact Us</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="aboutus.html#faqs">FAQs</a></li>
+                </ul>
+                <div class="top-bar-actions">
+                    <a href="contactus.html" class="top-btn contact"><i class="fas fa-envelope"></i> youforchildren@gmail.com</a>
+                    <a href="donation.html" class="top-btn donate"><i class="fas fa-heart"></i> Support Our Work</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-inner">
+                <a class="brand" href="index.html">
+                    <img src="images/logo.png" alt="Youth for Children Logo" />
+                    <div class="brand-text"><p>PROTECT • EDUCATE • EMPOWER</p></div>
+                </a>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="aboutus.html">Who We Are</a></li>
+                    <li><a href="projects.html" class="active">Our Work</a></li>
+                    <li><a href="volunteers.html">Get Involved</a></li>
+                    <li><a href="contactus.html">Contact</a></li>
+                </ul>
+                <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-slideshow">
+            <div class="page-hero-slide active" style="background-image: url('images/ngo.jpg');"></div>
+            <div class="page-hero-slide" style="background-image: url('images/ngo2.jpg');"></div>
+        </div>
+        <div class="page-hero-overlay"></div>
+        <div class="container">
+            <div class="page-hero-content">
+                <h1>Our Programs</h1>
+                <p>Youth-led initiatives advancing child protection, inclusive education, and environmental stewardship across Kenya.</p>
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span>•</span>
+                    <span>Programs</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="section soft">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Building a Safer, Brighter Future for Every Child</h2>
+                <p>Our programs are designed and led by youth who understand the challenges children face. From child protection to climate action, each initiative puts children's rights and well-being at the centre.</p>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters">
+                <button class="filter-chip active" data-filter="all">All Programs</button>
+                <button class="filter-chip" data-filter="protection">Child Protection</button>
+                <button class="filter-chip" data-filter="leadership">Youth Leadership</button>
+                <button class="filter-chip" data-filter="climate">Climate Action</button>
+                <button class="filter-chip" data-filter="education">Education</button>
+                <button class="filter-chip" data-filter="resource">Resource Mobilization</button>
+            </div>
+
+            <!-- Program Grid -->
+            <div class="program-grid" id="programGrid">
+                <!-- Child Protection & Safeguarding -->
+                <article class="program-card" data-category="protection">
+                    <div class="program-image">
+                        <img src="images/1.jpg" alt="Child Protection and Safeguarding" />
+                        <div class="program-tag">Flagship</div>
+                    </div>
+                    <div class="program-content">
+                        <div class="program-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h3>Child Protection & Safeguarding</h3>
+                        <p>Creating safe environments where children can learn, grow, and thrive free from abuse, neglect, exploitation, and violence. Through awareness sessions, capacity-building workshops, and community engagement, we equip children, caregivers, and educators with the knowledge and skills to recognize, prevent, and respond to child protection concerns.</p>
+                        <div class="program-meta">
+                            <span class="meta-item"><i class="fas fa-child"></i> 88 learners reached in pilot</span>
+                            <span class="meta-item"><i class="fas fa-school"></i> 5+ schools</span>
+                        </div>
+                        <a href="contactus.html" class="program-link">Support this program <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Empowering the Future -->
+                <article class="program-card" data-category="leadership">
+                    <div class="program-image">
+                        <img src="images/2.jpg" alt="Empowering the Future" />
+                        <div class="program-tag">Active</div>
+                    </div>
+                    <div class="program-content">
+                        <div class="program-icon"><i class="fas fa-users"></i></div>
+                        <h3>Empowering the Future</h3>
+                        <p>Our flagship youth leadership and development program. Through mentorship, public speaking training, storytelling, and practical community engagement, we strengthen young people's voices and equip them with the skills to become confident leaders and advocates for children's well-being.</p>
+                        <div class="program-meta">
+                            <span class="meta-item"><i class="fas fa-user-graduate"></i> 18 youth leaders trained</span>
+                            <span class="meta-item"><i class="fas fa-microphone"></i> Public speaking & advocacy</span>
+                        </div>
+                        <a href="contactus.html" class="program-link">Join as a mentor <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Climate Action (Eco-Heroes) -->
+                <article class="program-card" data-category="climate">
+                    <div class="program-image">
+                        <img src="images/4.jpg" alt="Climate Action Eco-Heroes" />
+                        <div class="program-tag">Featured</div>
+                    </div>
+                    <div class="program-content">
+                        <div class="program-icon"><i class="fas fa-leaf"></i></div>
+                        <h3>Climate Action (Eco-Heroes)</h3>
+                        <p>Equipping children and young people with the knowledge, values, and practical skills to become responsible environmental stewards. Through interactive learning, storytelling, tree-growing, waste management, and conservation activities, we nurture a deep connection between learners and nature.</p>
+                        <div class="program-meta">
+                            <span class="meta-item"><i class="fas fa-tree"></i> Tree-growing projects</span>
+                            <span class="meta-item"><i class="fas fa-recycle"></i> Waste management</span>
+                        </div>
+                        <a href="contactus.html" class="program-link">Get involved <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- One Learner, One Pen -->
+                <article class="program-card" data-category="resource">
+                    <div class="program-image">
+                        <img src="images/7.jpg" alt="One Learner One Pen" />
+                        <div class="program-tag">Active</div>
+                    </div>
+                    <div class="program-content">
+                        <div class="program-icon"><i class="fas fa-pen"></i></div>
+                        <h3>One Learner, One Pen</h3>
+                        <p>A resource mobilization initiative aimed at supporting children from underserved and informal settlement communities by providing essential learning materials. Through partnerships, donations, and community support, we remove barriers to education by supplying pens, pencils, exercise books, and other school necessities.</p>
+                        <div class="program-meta">
+                            <span class="meta-item"><i class="fas fa-hand-holding-heart"></i> School supplies</span>
+                            <span class="meta-item"><i class="fas fa-box"></i> Resource drives</span>
+                        </div>
+                        <a href="donation.html" class="program-link">Donate supplies <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Inclusive Education -->
+                <article class="program-card" data-category="education">
+                    <div class="program-image">
+                        <img src="images/5.jpg" alt="Inclusive Education" />
+                        <div class="program-tag">Ongoing</div>
+                    </div>
+                    <div class="program-content">
+                        <div class="program-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <h3>Inclusive Education</h3>
+                        <p>Creating learning environments where every child feels safe, valued, and empowered to reach their full potential. We work with schools and communities to remove barriers to education and promote rights-based approaches that leave no child behind.</p>
+                        <div class="program-meta">
+                            <span class="meta-item"><i class="fas fa-universal-access"></i> Inclusive practices</span>
+                            <span class="meta-item"><i class="fas fa-chalkboard-teacher"></i> Teacher support</span>
+                        </div>
+                        <a href="contactus.html" class="program-link">Partner with us <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Children Rights Clubs -->
+                <article class="program-card" data-category="protection">
+                    <div class="program-image">
+                        <img src="images/8.jpg" alt="Children Rights Clubs" />
+                        <div class="program-tag">Expanding</div>
+                    </div>
+                    <div class="program-content">
+                        <div class="program-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                        <h3>Children Rights Clubs</h3>
+                        <p>Establishing platforms in schools across Kenya where children can voice their concerns, learn about their rights, and advocate for themselves among peers and communities. These clubs strengthen child participation and create lasting awareness of child rights.</p>
+                        <div class="program-meta">
+                            <span class="meta-item"><i class="fas fa-school"></i> 5+ schools</span>
+                            <span class="meta-item"><i class="fas fa-bullhorn"></i> Child-led advocacy</span>
+                        </div>
+                        <a href="contactus.html" class="program-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="impact-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 style="color:white;">Impact at a Glance</h2>
+                <p style="color:rgba(255,255,255,0.85);">Real results powered by youth leadership and community partnership.</p>
+            </div>
+            <div class="impact-grid">
+                <div class="impact-stat">
+                    <div class="impact-stat-number">255+</div>
+                    <div class="impact-stat-label">Children Reached (2025)</div>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-stat-number">5</div>
+                    <div class="impact-stat-label">Schools Impacted</div>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-stat-number">18</div>
+                    <div class="impact-stat-label">Youth Leaders Trained</div>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-stat-number">4</div>
+                    <div class="impact-stat-label">Counties Covered</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-box">
+                <div class="cta-box-content">
+                    <h2>Join Us in Empowering Youth and Protecting Children</h2>
+                    <p>Your support helps us expand child protection, youth leadership, and climate action programs to more schools and communities.</p>
+                    <div class="cta-buttons" style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+                        <a href="donation.html" class="btn primary"><i class="fas fa-heart"></i> Support Our Work</a>
+                        <a href="volunteers.html" class="btn ghost"><i class="fas fa-hands-helping"></i> Get Involved</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">
+                        <img src="images/logo.png" alt="Youth for Children" />
+                        <div>
+                            <h5 style="margin:0;">Youth for Children</h5>
+                            <p style="font-size:0.75rem;">Protect · Educate · Empower</p>
+                        </div>
+                    </div>
+                    <p style="font-size:0.85rem; line-height:1.6;">A community‑based, non‑profit organization advancing child safety, inclusive education, and environmental consciousness through youth‑led programs across Kenya.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://wa.me/254795170534" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="projects.html">Our Work</a></li>
+                        <li><a href="volunteers.html">Get Involved</a></li>
+                        <li><a href="contactus.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5>Resources</h5>
+                    <ul>
+                        <li><a href="projects.html">Our Programs</a></li>
+                        <li><a href="volunteers.html">Volunteer</a></li>
+                        <li><a href="donation.html">Donate</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5>Contact</h5>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-envelope"></i><span>youforchildren@gmail.com</span></li>
+                        <li><i class="fas fa-phone"></i><span>0795 170 534<br>0758 819 176<br>0113 595 834</span></li>
+                        <li><i class="fas fa-map-marker-alt"></i><span>Kisumu, Kenya</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> Youth for Children (YFC). All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp FAB -->
+    <a href="https://wa.me/254795170534?text=Hello%20Youth%20for%20Children" class="wa-fab" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.page-hero-slide');
+        if (slides.length > 1) setInterval(() => {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }, 5000);
+
+        const mobileToggle = document.getElementById('mobileToggle'),
+            navMenu = document.getElementById('navMenu'),
+            navbar = document.getElementById('navbar');
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) navMenu.classList.remove('active');
+        });
+        window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+
+        const filterChips = document.querySelectorAll('.filter-chip'),
+            programCards = document.querySelectorAll('.program-card');
+
+        function showWithAnimation(cards) {
+            cards.forEach((card, index) => {
+                card.classList.remove('show');
+                card.style.display = 'block';
+                setTimeout(() => card.classList.add('show'), 50 + (index * 80));
+            });
+        }
+
+        function filterPrograms(category) {
+            programCards.forEach(card => {
+                const shouldShow = category === 'all' || card.dataset.category === category;
+                if (!shouldShow) {
+                    card.classList.remove('show');
+                    card.style.display = 'none';
+                }
+            });
+            const visibleCards = Array.from(programCards).filter(card => category === 'all' || card.dataset.category === category);
+            showWithAnimation(visibleCards);
+        }
+
+        filterChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                filterChips.forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                filterPrograms(chip.dataset.filter);
+            });
+        });
+        filterPrograms('all');
+
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        revealElements.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
